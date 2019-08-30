@@ -1,6 +1,7 @@
 package com.hcl.parking.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -71,8 +72,11 @@ public class BookingServiceImpl implements BookingService {
 			bookingResDTO.setStatus("SUCCESS");
 			bookingResDTO.setStatusCode(200);
 
-			User user = userRepo.findById(bookingReqDTO.getUserId()).get();
-			mailApi.sendMail(user.getEmail(), bookingReqDTO.getSlotId());
+			Optional<User> user = userRepo.findById(bookingReqDTO.getUserId());
+			if(user.isPresent())
+			{
+				mailApi.sendMail(user.get().getEmail(), bookingReqDTO.getSlotId());
+			}
 			em.getTransaction().commit();
 			return bookingResDTO;
 		} catch (Exception e) {
