@@ -108,7 +108,7 @@ public class AvailableSlotsSeriveTest {
 	{
 		List<ReleasedSlot> getReleasedSlot = new ArrayList<>();
 		Mockito.when(availableRepository.findAll()).thenReturn(getReleasedSlot);
-		Mockito.when(slotRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(getSlot()));
+	//	Mockito.when(slotRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(getSlot()));
 		ReleaseSlotsResponse release = availableService.getAvailableSlots(1);
 		Assert.assertEquals("SUCCESS", release.getStatus());
 	}
