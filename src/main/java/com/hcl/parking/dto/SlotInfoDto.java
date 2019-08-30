@@ -13,5 +13,5 @@ public class SlotInfoDto {
 	private int slotId;
 	private String slotName;
 	private String userName;
-	private int sapId;
+	private String sapId;
 }

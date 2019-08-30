@@ -1,9 +1,7 @@
 package com.hcl.parking.service;
 
 import java.time.LocalDate;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +32,6 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	ReleaseRepository relRepo;
 
-	@Autowired
-	private EntityManagerFactory emf;
-
 	@Override
 	/**
 	 * method to book the slot for user
@@ -48,13 +43,11 @@ public class BookingServiceImpl implements BookingService {
 	public BookingResDTO bookSlot(BookingReqDTO bookingReqDTO) {
 
 		Allocation allocation = allocRepo.findBySlotId(bookingReqDTO.getSlotId());
-		EntityManager em = emf.createEntityManager();
 	
 		if (null != allocation)
 			throw new ParkingManagementException("Parking slot already allocated");
 
 		try {
-			em.getTransaction().begin();
 			allocation = new Allocation();
 			allocation.setAllotedDate(LocalDate.now());
 			allocation.setSlotId(bookingReqDTO.getSlotId());
@@ -71,12 +64,10 @@ public class BookingServiceImpl implements BookingService {
 			bookingResDTO.setStatus("SUCCESS");
 			bookingResDTO.setStatusCode(200);
 
-			User user = userRepo.findById(bookingReqDTO.getUserId()).get();
-			mailApi.sendMail(user.getEmail(), bookingReqDTO.getSlotId());
-			em.getTransaction().commit();
+			Optional<User> user = userRepo.findById(bookingReqDTO.getUserId());
+			mailApi.sendMail(user.get().getEmail(), bookingReqDTO.getSlotId());
 			return bookingResDTO;
 		} catch (Exception e) {
-			em.getTransaction().rollback();
 			throw new ParkingManagementException("Error in allocating parking slot!! PLease try later");
 		}
 	}

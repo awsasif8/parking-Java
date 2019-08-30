@@ -10,7 +10,7 @@ import lombok.Setter;
 public class InfoDto {
 	private int userId;
 private String name;
-private int sapId;
+private String sapId;
 private String password;
 private String email;
 private int totalexp;
