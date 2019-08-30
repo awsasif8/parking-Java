@@ -56,7 +56,7 @@ public class BookingServiceImpl implements BookingService {
 
 			ReleasedSlot relSlot = relRepo.findBySlotId(bookingReqDTO.getSlotId());
 			relSlot.setSlotStatus("BOOKED");
-			relSlot = relRepo.save(relSlot);
+			relRepo.save(relSlot);
 
 			BookingResDTO bookingResDTO = new BookingResDTO();
 			bookingResDTO.setAllocationId(allocation.getAllocationId());

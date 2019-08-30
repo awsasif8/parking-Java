@@ -23,7 +23,7 @@ public class BookingController {
 	
 	@PostMapping("/book")
 	public ResponseEntity<BookingResDTO> bookSlot(@RequestBody BookingReqDTO bookingReqDTO){
-		return new ResponseEntity<BookingResDTO>(bookingService.bookSlot(bookingReqDTO), HttpStatus.OK);
+		return new ResponseEntity<>(bookingService.bookSlot(bookingReqDTO), HttpStatus.OK);
 	}
 
 }
