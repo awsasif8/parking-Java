@@ -44,7 +44,7 @@ public class SlotInfoControllerTest {
 	public void slotInfoTest() {
 		SlotInfoDto an=new SlotInfoDto();
 		an.setSlotId(1);
-		an.setSapId("51797119");
+		an.setSapId(51797119);
 		an.setStatusCode(200);
 		ResponseEntity<SlotInfoDto> expResult = new ResponseEntity<>(an, HttpStatus.OK);
 		when(slotinfoService.slotInfo(Mockito.anyInt())).thenReturn(an);
