@@ -38,7 +38,7 @@ if(user.isEmpty())
 		details.setUserName(infoDto.getName());
 		details.setPassword(infoDto.getPassword());
 		details.setSapId(infoDto.getSapId());
-		details.setRole("VIP");
+		details.setRole("vip");
 	}
 	else
 	{
