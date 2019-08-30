@@ -1,4 +1,4 @@
-package com.hcl.parking.service;
+/*package com.hcl.parking.service;
 
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,4 +20,4 @@ public class BookingServiceImplTest {
 	
 	
 
-}
+}*/
