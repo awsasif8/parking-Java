@@ -11,5 +11,6 @@ import com.hcl.parking.entity.ReleasedSlot;
 public interface ReleaseRepository extends JpaRepository<ReleasedSlot, Integer> {
 
 	Optional<ReleasedSlot> findByUserId(int userId);
+	ReleasedSlot findBySlotId(int slotId);
 
 }

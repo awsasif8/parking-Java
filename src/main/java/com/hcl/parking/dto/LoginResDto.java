@@ -16,6 +16,7 @@ public class LoginResDto implements Serializable {
 	private String role;
 	private String message;
 	private int statusCode;
+	private String status;
 	
 
 }

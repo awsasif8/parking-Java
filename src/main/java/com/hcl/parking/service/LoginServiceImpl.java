@@ -29,6 +29,7 @@ public class LoginServiceImpl implements LoginService {
 				loginResDto.setRole(details.getRole());
 				loginResDto.setUserName(details.getUserName());
 				loginResDto.setMessage("Login Success");
+				loginResDto.setStatus("SUCCESS");
 				loginResDto.setStatusCode(HttpStatus.OK.value());
 				return loginResDto;
 			}else {

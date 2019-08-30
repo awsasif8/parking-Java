@@ -9,22 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.parking.dto.LoginReqDto;
-import com.hcl.parking.dto.LoginResDto;
-import com.hcl.parking.service.LoginService;
+import com.hcl.parking.dto.BookingReqDTO;
+import com.hcl.parking.dto.BookingResDTO;
+import com.hcl.parking.service.BookingService;
 
 @RestController
-@RequestMapping("/api")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
-public class LoginController {
-
+@RequestMapping("/api")
+public class BookingController {
+	
 	@Autowired
-	LoginService loginService;
-
-	@PostMapping("/user/login")
-	public ResponseEntity<LoginResDto> userLogin(@RequestBody LoginReqDto loginDto) {
-
-		return new ResponseEntity<>(loginService.userLogin(loginDto), HttpStatus.OK);
+	BookingService bookingService;
+	
+	@PostMapping("/book")
+	public ResponseEntity<BookingResDTO> bookSlot(@RequestBody BookingReqDTO bookingReqDTO){
+		return new ResponseEntity<BookingResDTO>(bookingService.bookSlot(bookingReqDTO), HttpStatus.OK);
 	}
 
 }
